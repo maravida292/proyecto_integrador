@@ -1,0 +1,30 @@
+from django.conf.urls import patterns, url
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from Corazon import views
+
+
+
+
+
+urlpatterns = [
+    url(r'^$' , 'django.contrib.auth.views.login',
+		{'template_name':'login.html'}, name='login'),
+
+    url(r'^cerrar/$' , 'django.contrib.auth.views.logout_then_login',
+		 name='logout'),
+
+#INDEX VIEW
+
+	url(r'^home/', views.IndexHome, name='home'),
+	url(r'^administrador/', views.IndexAdministrador, name='administrador'),
+	url(r'^paciente/', views.IndexPaciente, name='paciente'),
+	url(r'^doctor/', views.IndexDoctor, name='doctor'),
+	url(r'^mapa/', views.IndexMapa, name='mapa'),
+	url(r'^noti/', views.IndexNoti, name='noti'),
+
+	url(r'^registrarse/$', Registrarse.as_view() , name = 'registrarse')
+	#url(r'^$', views.regPaciente, name='regpaciente'),
+
+]

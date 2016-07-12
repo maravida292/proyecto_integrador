@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block referens %}
+
+{% endblock %}
+
+{% block title %}
+    PACIENTE
+{% endblock %}
+
+
+
+
+{% block content %}
+
+                    
+    <!--
+
+        TEMPLATE Paciente: Es usada por el Doctor
+        
+        +++++EMPIEZA EL CODIGO+++++
+
+    -->
+
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-md-10">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title" style="text-decoration:none; font-size:30px;"> {{ mensaje }}</h4>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <th>Nombre</th>
+                                        <th>Apellido</th>
+                                        <th>Cedula</th>
+                                        <th>Edad</th>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in pacientes %}
+                                        <tr>
+                                            <td>{{item.usuario.first_name}}</td>
+                                            <td>{{item.usuario.last_name}}</td>
+                                            <td>{{item.cedula}}</td>
+                                            <td>{{item.edad}}</td>
+
+                                            <td> <a href="/corazon/ver/paciente/{{item.id}}/" style=cursor:pointer; type="button">  <i class="pe-7s-search" style=cursor:pointer;></i> Ver  </a>   
+                                            <a href="/corazon/edit/paciente/{{item.id}}/" style=cursor:pointer; type="button" > <i class="pe-7s-note" style=cursor:pointer;></i> Editar </a>
+                                            <a href="/corazon/mail/{{item.id}}/" style=cursor:pointer; type="button" > <i class="pe-7s-mail" style=cursor:pointer;></i> Correo </a>
+                                            <a href="/corazon/edit/paciente/{{item.id}}/" style=cursor:pointer; type="button" > <i class="pe-7s-chat" style=cursor:pointer;></i> Mensaje </a> </td>
+                                        </tr>
+                                        {% endfor%}
+
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+
+
+    {% block javascrip %}
+ <!--   <script src="/static/js/demo.js"></script>
+    -->
+    {% endblock %}
+

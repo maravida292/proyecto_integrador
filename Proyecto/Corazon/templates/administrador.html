@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% block referens %}
+
+{% endblock %}
+
+{% block title %}
+	Administrador
+{% endblock %}
+
+
+
+
+{% block content %}
+
+
+<div class="content">
+    <div class="container-fluid">
+         <div class="row">
+
+
+                    
+    <!--
+
+        TEMPLATE Administrador: Es usada por el Doctor_Administrador donde puede ver las lista de doctores y pacientes
+        
+        +++++EMPIEZA EL CODIGO+++++
+
+        target="_blank" con esto salta a otra ventana
+
+    -->
+
+            <div class="col-md-12"> 
+
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">TABLA DOCTORES</h4>
+                        <input type="button" value="Agregar" onclick = "location='/corazon/registrar_doc/'" class="btn btn-info btn-fill pull-center"/>
+                    </div>
+                    <div class="content table-responsive table-full-width" style="overflow-y:scroll;">
+                        <table class="table table-hover table-striped" id="myTable" ">
+                            <thead>
+                                <th>Usuario</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                            	<th>Cedula</th>
+                            	<th>Clinica</th>
+                            	<th>Telefono</th>
+                                <th>Direccion</th>
+                            </thead>
+                            <tbody>
+                                {% for item in doctores %}
+                                <tr>
+                                	<td>{{item.usuario.username}}</td>
+                                    <td>{{item.usuario.first_name}}</td>
+                                    <td>{{item.usuario.last_name}}</td>
+                                	<td>{{item.cedula}}</td>
+                                    <td>{{item.clinica}}</td>
+                                    <td>{{item.telefono}}</td>
+                                    <td>{{item.direccion}}</td>
+                                    <td> <a href="/corazon/edit/doctor/{{item.id}}/" style=cursor:pointer; type="button" class="" > <i class="pe-7s-note"></i></a></td>
+                                    {% if user.is_authenticated %}
+                                        <td> <a href="{% url "delete_D" item.id %}" role="button" class=""> <i class="pe-7s-trash"></i></a></td>
+                                    {% endif %}
+
+                                </tr>   
+                                {% endfor%}
+
+                                
+                            </tbody>
+                        </table>
+
+
+                        <script>
+                        function deleteRow(r) {
+                            eliminar=confirm("¿Deseas eliminar este registro?");
+                            if (eliminar == true){
+                                var i = r.parentNode.parentNode.rowIndex;
+                                document.getElementById("myTable").deleteRow(i);
+                            }
+
+                        }
+                        </script>
+                    </div>
+                </div>
+
+
+
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">TABLA PACIENTE</h4>
+                        <input type="button" value="Agregar" onclick = "location='/corazon/registrar_pac/'" class="btn btn-info btn-fill pull-center"/>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <th>Usuario</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Cedula</th>
+                                <th>Edad</th>
+                            </thead>
+                            <tbody>
+                                {% for item in pacientes %}
+                                <tr>
+                                    <td>{{item.usuario.username}}</td>
+                                    <td>{{item.usuario.first_name}}</td>
+                                    <td>{{item.usuario.last_name}}</td>
+                                    <td>{{item.cedula}}</td>
+                                    <td>{{item.edad}}</td>
+                                    <td> <a href="/corazon/edit/paciente/{{item.id}}/" style=cursor:pointer; type="button" class="" > <i class="pe-7s-note"></i></a></td>
+                                    {% if user.is_authenticated %}
+                                        <td> <a href="{% url "delete_P" item.id %}" role="button" class=""> <i class="pe-7s-trash"></i></a></td>
+                                    {% endif %}
+                                </tr>
+                                {% endfor%}
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">LOGS</h4>
+                    </div>
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <th>Usuario</th>
+                                <th>Fecha</th>
+                                <th>Accion</th>
+                            </thead>
+                            <tbody>
+                                {% for item in logs %}
+                                <tr>
+                                    <td>{{item.user}}</td>
+                                    <td>{{item.timestamp}}</td>
+                                    <td>{{item.action}}</td>
+                                </tr>
+                                {% endfor%}
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block javascrip %}
+    <script src="/static/js/jquery.form.min.js" </script>
+    <script src="jquery.js"></script>
+    <script src="bootstrap-modal.js"></script>
+{% endblock %}

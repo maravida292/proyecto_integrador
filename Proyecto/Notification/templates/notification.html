@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+{% block referens %}	{% endblock %}
+
+
+{% block title %}
+    MENSAJES
+{% endblock %}
+
+
+<!-- 
+	  EMPIEZA EL CONTENIDO   
+	  					   -->
+{% block content %}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+        	<div class="col-md-12"> 
+				<div class="card">
+				<div class="header">
+
+					
+
+					
+
+					<p>De: {{notification.user_envio}}</p>
+					<p>Asunto: {{notification.titulo}}</p>
+					<p>Mensaje: {{notification.mensaje}}</p>
+
+					<p>Fecha: {{notification.fecha}}</p>
+
+
+					{% if not notification.leido %}
+
+						<p><a href="/notification/delete/{{notification.id}}/"> Marcar como leido</a></p>
+
+					{% endif %}
+
+					<p><a href="/notification/verMensajes"> Regresar</a></p>
+
+
+
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

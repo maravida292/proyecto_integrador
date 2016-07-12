@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+
+{% block referens %}    {% endblock %}
+
+
+{% block title %}   Home  {% endblock %}
+
+
+    {% block content %}
+<div class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="content">
+                <div class="row">
+                 
+    <!--
+
+        TEMPLATE Home: Es usado como pagina de inicio de la aplicacion, donde se encuentra el logo y una breve descripcion del proyecto Safe Heart
+        
+        <style type="text/css">
+                      .ancho{
+                        color: blue;
+                        
+                        left:60px }
+                      </style>
+
+
+
+        +++++EMPIEZA EL CODIGO+++++
+
+    -->
+
+
+                <div class="col-sm-8"> <BR><BR> <BR>
+                    <img src="/static/img/logo12.png" id="logoimg" alt=" Logo" class="img-responsive center-block"/>
+                    <BR>
+
+                    <p class="text-center">
+                        
+                        Sistema de monitoreo del ritmo cardiaco de fácil uso para médicos y pacientes, 
+                        el cual brinda ayuda continua a personas que padezcan enfermedades referentes al corazón. 
+                        Con comunicación constante al dispositivo sensorial de la señal cardiaca además de su ubicación geográfica, mediante internet móvil desde cualquier parte del mundo.
+                    </p>
+                    <BR> <BR> <BR> <BR> <BR> <BR> <BR> <BR>
+                </div>
+
+                <div class="col-md-4">
+                    <h5>Notificaciones</h5>
+                    <div class="alert alert-success">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                Mensaje nuevo.   <a href="#" class="alert-link">link</a>.
+                    </div>
+                    <div class="alert alert-success">
+                                <button type="button" aria-hidden="true" class="close">×</button>
+                                <span><b> Success - </b> This is a regular notification made with ".alert-success"</span>
+                    </div>
+                </div>   
+
+                
+                
+                {% if user.doctor.foto %}
+                    <!--
+                    <img src="/media/{{user.doctor.foto}}" width="96px" height="96px"/>
+                     -->
+
+                {% endif %}
+
+
+
+                    <!--   Termina Codigo   -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    {% endblock %}
+
+
+
+
+    <!--   Codigo que permite mostrar un mensaje por 10 segundos ahahha xD!!!!!  jQuery plugin for alert notification-->
+    {% block javascrip %}
+
+    <script src="/static/js/demo.js"></script>
+
+        <script type="text/javascript">
+        $(document).ready(function(){
+
+            demo.initChartist();
+
+            $.notify({
+                icon: 'pe-7s-info',
+                message: "Bienvenido a <b>Safe System</b> - donde podra saber el estado de su corazón."
+
+            },{
+                type: 'info',
+                timer: 1000
+            });
+
+        });
+         </script>
+
+    {% endblock %}

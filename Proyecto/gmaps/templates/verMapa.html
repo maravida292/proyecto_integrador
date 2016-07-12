@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block referens %}
+
+    <style>
+       #map {
+        width: 50%;
+        height: 400px;
+      }
+    </style>
+
+{% endblock %}
+
+{% block title %}
+    Mapa
+{% endblock %}
+
+
+
+
+{% block content %}
+                   
+    <!--
+
+        TEMPLATE verMapa: Es usada 
+        
+        +++++EMPIEZA EL CODIGO+++++
+
+    -->
+
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+
+                
+                <div id="map">
+                   <script>
+                      // Note: This example requires that you consent to location sharing when
+                      // prompted by your browser. If you see the error "The Geolocation service
+                      // failed.", it means you probably did not give permission for the browser to
+                      // locate you.
+                    function initMap(){
+                        if(navigator.geolocation)
+                        {
+                            navigator.geolocation.getCurrentPosition(getCoords, getError);
+                        } else {
+                            initialize(13.30272, -87.194107);
+                        }
+
+                        function getCoords(position)
+                        {
+                            var lat = position.coords.latitude;
+                            var lng = position.coords.longitude;
+                            initialize(lat, lng);
+                        }
+
+                        function getError(err)
+                        {
+                            initialize(13.30272, -87.194107);
+                        }
+
+                        function initialize(lat, lng) {
+                            var latlng = new google.maps.LatLng(lat, lng);
+                            var mapSetting = {
+                                center : LatLng,
+                                zoom : 15,
+                                //mapTypeId : google.maps.mapTypeId.ROADMAP
+                            }
+                            map = new google.maps.Map(document.getElementById('map'), mapSetting);
+
+                        }
+                    }
+
+                        map.setCenter(new google.maps.LatLng(-34, 151));
+                        map.setCenter({lat: -34, lng: 151}); 
+
+
+
+
+                    function initMap() {
+                        var mapSetting = {
+                                center : {lat: -34.397, lng: 150.644},
+                                zoom : 15
+                            }
+                        var map = new google.maps.Map(document.getElementById('map'), mapSetting);
+
+
+                        var infoWindow = new google.maps.InfoWindow({map: map});
+
+                        
+                        if (navigator.geolocation){
+                            navigator.geolocation.getCurrentPosition(
+                                function(position){
+                                    var pos = {
+                                      lat: position.coords.latitude,
+                                      lng: position.coords.longitude
+                                    };
+
+                                    infoWindow.setPosition(pos);
+                                    infoWindow.setContent('Location found.');
+                                    map.setCenter(pos);
+                                },
+                                function() {
+                                    handleLocationError(true, infoWindow, map.getCenter());
+                                }
+                            );
+                        } 
+                        else{   // No soporta geolocalizacion
+                              handleLocationError(false, infoWindow, map.getCenter());
+                        }
+                    }
+
+                    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                        infoWindow.setPosition(pos);
+                        infoWindow.setContent(browserHasGeolocation ?
+                                              'Error: The Geolocation service failed.' :
+                                              'Error: Your browser doesn\'t support geolocation.');
+                    }
+                    </script>
+
+
+                
+                </div>
+            
+
+              
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascrip %}
+    <script src="https://maps.googleapis.com/maps/api/js?key= AIzaSyAYga-TGzFFW2T6tqiK-8TR_4VXrUk4m1c &callback=initMap">
+        
+    </script>
+
+
+{% endblock %}

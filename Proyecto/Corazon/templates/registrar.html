@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block referens %}
+<link href="/static/css/boton.css" rel="stylesheet" type="text/css" media="screen" />
+{% endblock %}
+
+
+{% block title %}
+	{{ titulo }}
+{% endblock %}
+
+
+
+
+{% block content %}
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                	<div class="col-md-8">
+                        <div class="card">
+							<div class="content">
+	
+
+
+
+						<a href="{{referencia}}" style="text-decoration:none; font-size:25px; ">{{ titulo }}</a>
+						<br><br>		
+						
+						{% if messages %}
+						<div class="col-md-6">
+						{% load bootstrap %}
+							{% for message in messages %}
+								<div class="alert {% if message.tags %}alert-{% if message.tags == "error" %}danger{% else %}{{message.tags}} {% endif %}"{% endif %}> {{ message }} </div>
+								
+							{% endfor %}
+						</div>
+						{% endif %}
+
+
+						
+						{% if form.errors %} 
+							<div class="alert alert-danger"> Por favor corrige lo siguiente:</div>
+						{% endif %}
+						
+					
+						
+
+						{% if form %}
+						<form class="form-signin" action="" method="POST">{% csrf_token %}
+							{% load bootstrap %}
+							{{ form|bootstrap_horizontal:'col-sm-4' }}
+							
+							<p><button value="Registrarse" class="button" type="submit">Guardar</button></p>        
+						</form>
+						{% endif%}
+
+						<br><br>
+						<p style="color: black;">  {{ titulo2 }}  </p>
+
+
+
+
+							</div>
+						</div>
+                	</div>
+	 			</div>
+    		</div>
+  		</div>
+
+
+{% endblock %}
+

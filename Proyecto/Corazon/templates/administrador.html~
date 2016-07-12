@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block referens %}
+
+{% endblock %}
+
+{% block title %}
+	Administrador
+{% endblock %}
+
+
+<input type="submit" value="Registrarse">
+
+{% block content %}
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">DOCTORES</h4>
+                                <p class="category">Especialistas en cardiologia</p>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <th>Nombre</th>
+                                    	<th>Cedula</th>
+                                    	<th>Clinica</th>
+                                    	<th>Telefono</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        	<td>1</td>
+                                        	<td>Dakota Rice</td>
+                                        </tr>
+                                        <tr>
+                                        	<td>2</td>
+                                        	<td>Minerva Hooper</td>
+                                        </tr>
+                                        <tr>
+                                        	<td>3</td>
+                                        	<td>Sage Rodriguez</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+{% endblock %}

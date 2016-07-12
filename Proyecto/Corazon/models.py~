@@ -1,0 +1,33 @@
+from __future__ import unicode_literals
+from django.db import models
+
+# Create your models here.
+from django.contrib.auth.models import User
+
+class Doctor(models.Model):
+	SEX = ((u'M', u'Mujer'),(u'H', u'Hombre'),)
+	usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+	cedula = models.CharField(max_length=10, blank=True)
+	sexo = models.CharField(max_length=2, choices=SEX, blank=True)
+	clinica = models.CharField(max_length=30, blank=True)
+	telefono = models.IntegerField(blank=True)
+	direccion = models.CharField(max_length=50,null=True, blank=True)
+
+	def __unicode__(self):
+		return self.usuario.username
+
+class Paciente(models.Model):
+	CIVIL = ((u'S', u'Solter@'),(u'C', u'Casad@'),(u'D', u'Divorsiad@'),(u'V', u'Viud@'),)
+	SEX = ((u'M', u'Mujer'),(u'H', u'Hombre'),)
+	usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+	cedula = models.CharField(max_length=10, blank=True)
+	sexo = models.CharField(max_length=2, choices=SEX, blank=True)
+	edad = models.PositiveIntegerField(null=True, blank=True)
+	telefono = models.IntegerField(blank=True)
+	estado_civil = models.CharField(max_length=2, choices=CIVIL, blank=True)
+	nacionalidad = models.CharField(max_length=20, blank=True)
+	doctor1 = models.ForeignKey(Doctor, on_delete=models.CASCADE, null=True)
+
+	def __unicode__(self):
+		return self.usuario.username
+	

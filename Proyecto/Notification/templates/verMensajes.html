@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+
+{% block referens %}	{% endblock %}
+
+
+{% block title %}
+    MENSAJES - TODOS
+{% endblock %}
+
+
+
+
+{% block content %}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+        	<div class="col-md-6"> 
+				<div class="card">
+				<div class="header">
+
+
+					
+					<h3>MENSAJES   <a href="/notification/enviarMensaje/" class="btn btn-info btn">Nuevo</a></h3>
+
+
+					{% if notification.count > 0 %}
+						
+						{% for item in notification %}
+							{% if item.leido%}
+							
+								<div class="alert alert-info"><span>LEIDOS</span></div>
+								<p>Titulo:  {{item.titulo}}</p>
+								<p>{{item.mensaje}}<a href="/notification/ver/{{ item.id }}/"> ver</a></p>
+
+							
+							{% else %}
+
+									<div class="alert alert-info"><span> NO LEIDOS</span></div>
+									<p>Titulo:  {{item.titulo}}</p>
+									<p>{{item.mensaje}}<a href="/notification/ver/{{ item.id }}/"> ver</a></p>
+									
+							{% endif %}
+
+						{% endfor %}
+						<br><br>
+					{% else %}
+						<h4> No tiene mensajes.</h4><br><br><br><br><br>
+					{% endif %}
+
+
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

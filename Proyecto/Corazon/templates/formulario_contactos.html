@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block referens %}
+<link href="/static/css/boton.css" rel="stylesheet" type="text/css" media="screen" />
+{% endblock %}
+
+
+
+{% block title %}   ENVIO - MAILS  {% endblock %}
+
+
+{% block content %}
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+            	<div class="col-md-12">
+                    <div class="card">
+                        <div class="header">
+				            <p style="text-decoration:none; font-size:20px;"> Envio de Email </p>
+				            <p style="color: blue;">  {{ titulo }}  </p>
+			            	{% if form %}
+									<form action="" method="POST">{% csrf_token %}
+										<table>
+										{{form.as_p}}
+										</table>
+										<p><button value="Registrarse" class="button" type="submit">Enviar</button></p>        
+									</form>
+							{% endif%}
+						</div>
+					</div>
+            	</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+             

@@ -1,0 +1,6 @@
+from django.contrib import admin
+
+#EMPIEZO AQUI
+from .models import Doctor#, Paciente
+
+admin.site.register(Doctor)

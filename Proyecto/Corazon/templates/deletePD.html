@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block referens %}    {% endblock %}
+
+{% block title %}   Delete  {% endblock %}
+
+
+
+{% block content %}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+            	<div class="card">
+            	<div class="header">
+            
+
+
+	            <form method="POST"> {% csrf_token%}
+	            		<h3> Desea eliminar el registro de {{item_eliminar.usuario}} ? </h2> <br>
+	            		<button class="btn btn-danger" type="submit"> Si, eliminar.</button>
+	            		<a class="btn btn-default" href="{% url 'administrador' %}">Cancelar</a> <br><br>
+	            </form>
+
+
+
+	            </div>
+            	</div>
+            </div>
+        </div>
+	</div>
+</div>
+
+{% endblock %}
